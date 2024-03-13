@@ -2,11 +2,15 @@
 Autor:           Alexander Schechtel
 Description:     Basic usage of Streamlit. https://streamlit.io
 Written in:      IDE PyCharm.
+
+About this Code:
+The app will show basic usage of Streamlit
 """
 
 import streamlit as st
 import PIL
 import time
+import sklearn as sk
 
 
 def main() -> None:
@@ -18,16 +22,17 @@ def main() -> None:
     button_clicked = st.button("Click Me!")
     # Handle button click
     if button_clicked:
-        # Perform some action based on button click
+        # Button click
         st.write("Button clicked!")
         if user_input:
             st.write("You entered:", user_input)
         else:
             st.write("You didn't enter any text.")
 
+    st.write("# 😭")
 
-    time.sleep(5) # Terminate
-    st.stop()
+    op = [1, 2]
+    st.checkbox("Agree")
 
 
 if __name__ == "__main__":
