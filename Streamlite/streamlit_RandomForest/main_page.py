@@ -28,8 +28,9 @@ def main():
 
     st.title("Welcome user")
     st.write("Let's do some regression!")
+
     st.sidebar.title("Sidebar titile")
-    st.markdown("# Main page 🎈")
+    #st.markdown("# Main page 🎈")
     #st.sidebar.markdown()
     st.sidebar.write("Sidebar text")
 
