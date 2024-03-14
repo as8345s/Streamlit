@@ -1,15 +1,27 @@
-"""Page 1
+""" Page_1
+Autor:           Alexander Schechtel
+Description:     Basic usage of Streamlit. https://streamlit.io
+Written in:      IDE PyCharm.
 
+Dataset information:
+Dataset 1: (regression dataset)
+  SECOND HAND CARS DATA SET | REGRESSION
+  Source: https://www.kaggle.com/datasets/mayankpatel14/second-hand-used-cars-data-set-linear-regression/data [14.03.2024]
+  By MAYANK PATEL on Kaggle
+
+Dataset 2:
 """
+
 import streamlit as st
 import sklearn as sk
 from sklearn.ensemble import RandomForestRegressor
 import pandas as pd
 
 
-
-
 def main():
+    """Enter Page: page_1
+
+    """
 
     st.title("Random-Forest regressor")
     st.write("Let's do some regression!")
@@ -24,7 +36,7 @@ def main():
     st.sidebar.subheader("Subheader")
     st.sidebar.write("Text in subheader")
 
-
+    # This part of code will be organized later
     ##############################################################
     rm_regress = RandomForestRegressor()
 
@@ -49,12 +61,6 @@ def main():
     #print(rm_regress.predict([ [798186,	3,	78945,	1,	2,	14,	177, 73, 123] ]))
     print(f"score: {rm_regress.score(test_x, test_y)}")
     ##############################################################
-
-
-
-
-
-
 
 
 if __name__ == "__main__":
