@@ -35,7 +35,7 @@ def main():
 
     cam_on_off = st.toggle("Toggle camera (on, off)", value=False)
 
-    util.display_feed(cam_on_off, model_size, cam_source, conf )
+    util.display_feed(cam_on_off, model_size, cam_source, conf)
 
 
 if __name__ == "__main__":
