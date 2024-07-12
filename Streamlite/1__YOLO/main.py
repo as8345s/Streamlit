@@ -1,6 +1,9 @@
 """
 Written in: IDE PyCharm.
-Autor:       Alex.S
+Autor:      Alex.S
+use.:
+    The main page uses a camera to film and display a video.
+    The second column display the result of the used YOLO model for Object Detection.
 """
 
 import streamlit as st
@@ -35,9 +38,10 @@ def main():
     """)
 
     st.write("Selected model size:", model_size)
-
+    # Turn on / off camera.
     cam_on_off = st.toggle("Toggle camera (on, off)", value=False)
-
+    # Function to read the camera data and display it in the first column.
+    # - Second column for model output as a video stream.
     util.display_feed(cam_on_off, model_size, cam_source, conf)
 
 
