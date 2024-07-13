@@ -56,6 +56,7 @@ def __placeholder_frame(text: str = "Placeholder", fontsize: int = 1, thick: int
     return frame
 
 
+
 # This function creates two video streams.
 def __run_feed(placeholder1, placeholder2, cam:bool=False, model_size: str = 'Nano',  conf: float = 0.6):
     """
@@ -104,21 +105,23 @@ def display_feed(cam_toggle: bool = False, model_size: str = 'Nano', cam_source:
 
     cam_available = test_cam(cam_source)
 
+    col1, col2 = st.columns(2)
+
+    # Placeholders for the video feeds
+    with col1:
+        st.write("Original")
+        placeholder1 = st.empty()
+    with col2:
+        st.write("YOLOv8 Object Detection")
+        placeholder2 = st.empty()
+
     if cam_available:
-
-        col1, col2 = st.columns(2)
-
-        # Placeholders for the video feeds
-        with col1:
-            st.write("Original")
-            placeholder1 = st.empty()
-        with col2:
-            st.write("YOLOv8 Object Detection")
-            placeholder2 = st.empty()
-
         __run_feed(placeholder1, placeholder2, cam_toggle, model_size, conf)
     else:
+        placeholder1.image(__placeholder_frame('No camera activity', 1, 2))
+        placeholder2.image(__placeholder_frame('No frames to predict', 1, 2))
         st.write("OOps.. No camera found at source ", cam_source)
+
 
 
 # Function which shows a video stream and saves it.
@@ -129,6 +132,13 @@ def record_show_save_feed(cam_toggle: bool = False, cam_source: int = 0):
     :param cam_source: The source of a camera as index.
     :return: returns nothing.
     """
+
+    ## Notice: ##
+    # - A problem might occur for the codec H264.
+    # - https://github.com/cisco/openh264/releases  Downloade and extraxt .dll files.
+    # openh264_path = r'C:\....\dll_dir
+    # os.environ['PATH'] = openh264_path + ';' + os.environ['PATH']
+
     placeholder = st.empty()
 
     fps = 30.0
@@ -139,7 +149,7 @@ def record_show_save_feed(cam_toggle: bool = False, cam_source: int = 0):
 
     if cam_available and cam_toggle:
 
-        fourcc = cv.VideoWriter_fourcc(*'H264')
+        fourcc = cv.VideoWriter_fourcc(*'avc1') # H264  avc1
         out = cv.VideoWriter(video_path, fourcc, fps, resolution)
 
         cap = cv.VideoCapture(0)
@@ -149,7 +159,7 @@ def record_show_save_feed(cam_toggle: bool = False, cam_source: int = 0):
                 st.write("No camera frames")
                 break
 
-            #frame = cv.cvtColor(frame, cv.COLOR_BGR2RGB)
+            frame = cv.cvtColor(frame, cv.COLOR_BGR2RGB)
             placeholder.image(frame, channels='RGB')
             out.write(frame)
 

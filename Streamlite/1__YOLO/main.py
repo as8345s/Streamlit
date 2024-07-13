@@ -9,6 +9,7 @@ use.:
 import streamlit as st
 import util
 
+
 def main():
 
     st.title("YOLOv8 Object Detection")
@@ -43,6 +44,7 @@ def main():
     # Function to read the camera data and display it in the first column.
     # - Second column for model output as a video stream.
     util.display_feed(cam_on_off, model_size, cam_source, conf)
+
 
 
 if __name__ == "__main__":
